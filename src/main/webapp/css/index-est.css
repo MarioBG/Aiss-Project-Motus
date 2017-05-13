@@ -1,0 +1,32 @@
+@CHARSET "ISO-8859-1";
+html{
+	background-image: url("bruj.jpg"); 
+	background-x:no repeat;
+	background-y:no repeat;
+
+}
+#body{
+	background-size: cover;
+}
+
+#div { 
+	text-align: center;
+    height: 70%; 
+    width: 50%;
+    overflow-y: hidden; 
+    margin: auto; 
+    padding-left:30px;
+    padding-right:30px;
+    position:fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top:  25%;
+    background:#D3FAF0; 
+
+    margin-top:  -72px;
+    border-width: 1px; 
+    border-color: #3FCCA9;
+    border-style: solid; 
+    max-height: 400px;
+    max-width: 500px;
+}

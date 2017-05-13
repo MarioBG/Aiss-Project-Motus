@@ -1,0 +1,90 @@
+html,body {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    
+
+}
+
+
+/* Layout */
+
+.container {
+	
+}
+
+.bottom_links {
+	text-align: right;
+	margin-top: 10px;
+}
+
+
+/* Headers */
+
+h1 {
+	color: #328E81;
+	font-size: 2em;
+}
+
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    margin: 0px auto;     
+}
+
+td, th {
+    border: 1px solid white;
+    padding: 8px;
+    text-align:center;
+}
+
+ tr:nth-child(odd){background-color: #d9fdf9;}
+ tr:nth-child(even){background-color: #AFFBF1;}
+
+tr:hover {background-color: #63c7ba;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #58DAC9;
+    color: white;
+}
+
+
+/* Links */
+
+.button, .button:visited {
+    background-color: #58DAC9; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover, .button:active  {
+    background: #37A193;
+    text-decoration: none;
+}
+
+
+/* Inputs */
+
+input[type=text] {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+
+
