@@ -27,7 +27,7 @@ public class ConsorcioResource {
 			consorcios = cr.get(Consorcio[].class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving all songsal obtener los consorcios: " + cr.getResponse().getStatus());
+			System.err.println("Error al obtener los consorcios: " + cr.getResponse().getStatus());
 			throw re;
 		}
 		
