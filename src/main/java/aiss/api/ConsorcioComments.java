@@ -3,30 +3,29 @@ package aiss.api;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
+
+import aiss.api.resources.PlaylistResource;
+
 
 public class ConsorcioComments extends Application {
 	private Set<Object> singletons = new HashSet<Object>();
 	private Set<Class<?>> classes = new HashSet<Class<?>>();
-	
-	public ConsorcioComments(){
-		singletons.add(ComentariosResource.getInstance());
+
+	// Loads all resources that are implemented in the application
+	// so that they can be found by RESTEasy.
+	public ConsorcioComments() {
+
+		singletons.add(PlaylistResource.getInstance());
 	}
 
-	public Set<Class<?>> getClasses(){
+	@Override
+	public Set<Class<?>> getClasses() {
 		return classes;
 	}
-	
-	public Set<Object> getSingletons(){
+
+	@Override
+	public Set<Object> getSingletons() {
 		return singletons;
 	}
-	
-	@GET
-	@Produces("application/json")
-	public String getCosicas(){
-		return "meh";
-	}
-	
 }
