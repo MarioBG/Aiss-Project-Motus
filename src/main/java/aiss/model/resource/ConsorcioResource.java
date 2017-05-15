@@ -1,21 +1,22 @@
 package aiss.model.resource;
 
 import java.util.Arrays;
-
 import java.util.Collection;
 
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
+
 import aiss.model.consorcio.Consorcio;
 import aiss.model.consorcio.Municipio;
 import aiss.model.consorcio.Nucleo;
-import aiss.model.consorcio.Paradas;
 import aiss.model.consorcio.ParadaDatos;
+import aiss.model.consorcio.Paradas;
 
 public class ConsorcioResource {
 	//uri para obtener la lista de consorcios
 	private String uri = "http://api.ctan.es/v1/Consorcios/consorcios";
 	private String uri2 = "http://api.ctan.es/v1/Consorcios/";
+	private static ConsorcioResource _instance=null;
 	//private String uri3 = "http://api.ctan.es/v1/Consorcios/:idConsorcio/nucleos";
 
 	
@@ -32,6 +33,13 @@ public class ConsorcioResource {
 		}
 		
 		return Arrays.asList(consorcios);
+	}
+	
+	public static ConsorcioResource getInstance()
+	{
+		if(_instance==null)
+				_instance=new ConsorcioResource();
+		return _instance;
 	}
 	
 	public Collection<Municipio> getMunicipios(String idConsorcio) {

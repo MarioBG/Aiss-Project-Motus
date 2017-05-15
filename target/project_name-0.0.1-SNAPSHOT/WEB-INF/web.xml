@@ -17,6 +17,10 @@
   </servlet-mapping>
   
   
+  <context-param>
+  	<param-name>resteasy.servlet.mapping.prefix</param-name>
+  	<param-value>/apiv1</param-value>
+  </context-param>
   <servlet>
   	<servlet-name>Resteasy</servlet-name>
   	<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
