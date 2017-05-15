@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import aiss.api.resources.PlaylistResource;
+import aiss.api.resources.ComentariosResource;
 
 
 public class ConsorcioComments extends Application {
@@ -16,7 +16,7 @@ public class ConsorcioComments extends Application {
 	// so that they can be found by RESTEasy.
 	public ConsorcioComments() {
 
-		singletons.add(PlaylistResource.getInstance());
+		singletons.add(ComentariosResource.getInstance());
 	}
 
 	@Override
