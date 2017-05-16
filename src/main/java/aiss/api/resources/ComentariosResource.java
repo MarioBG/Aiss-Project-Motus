@@ -1,17 +1,25 @@
 package aiss.api.resources;
 
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
-import org.restlet.resource.ClientResource;
-import org.restlet.resource.ResourceException;
+import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.model.consorcio.ParadaDatos;
 import aiss.model.consorcio.ParadasDatos;
@@ -24,7 +32,6 @@ public class ComentariosResource {
 	private static ComentariosResource _instance=null;
 	private static List<String> comentarios = new ArrayList<String>();
 	private static List<List<ParadaComentada>> paradas = new ArrayList<List<ParadaComentada>>();
-	private static String uri2 = "http://api.ctan.es/v1/Consorcios/";
 	
 	
 	private ComentariosResource() {
@@ -75,4 +82,40 @@ public class ComentariosResource {
 	{
 		return paradas.get(0);
 	}
+	
+	private static int indexParada(List<List<ParadaComentada>> lista, String id){
+		for (List<ParadaComentada> l : lista){
+			for(ParadaComentada p : l){
+				if(p.getIdParada().equals(id)){
+					return lista.indexOf(l);
+				}
+			}
+		}
+		return -1;
+	}
+	
+	@POST
+	@Path("/{paradaId}/{comentario}")
+	@Consumes("text/plain")
+	@Produces("application/json")
+	public Response addComentario(@Context UriInfo uriInfo,@PathParam("paradaId") String paradaId, @PathParam("comentario") String comentario){
+		int i = indexParada(paradas,paradaId);
+		if(i==-1){
+			throw new NotFoundException("No se encontró la parada con esta ID=" + paradaId);
+		}
+		ParadaComentada ans = null;
+		for(ParadaComentada p : paradas.get(i)){
+			if (p.getIdParada().equals(paradaId)){
+				p.addComentario(comentario);
+				ans=p;
+			}
+		}
+		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
+		URI uri = ub.build(ans.getIdParada());
+		ResponseBuilder resp = Response.created(uri);
+		resp.entity(ans);			
+		return resp.build();
+			
+	}
+	
 }

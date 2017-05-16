@@ -3,7 +3,6 @@ package aiss.api.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-import aiss.model.consorcio.Parada;
 import aiss.model.consorcio.ParadaDatos;
 
 public class ParadaComentada extends ParadaDatos {
