@@ -11,6 +11,7 @@ import aiss.model.consorcio.Municipio;
 import aiss.model.consorcio.Nucleo;
 import aiss.model.consorcio.ParadaDatos;
 import aiss.model.consorcio.Paradas;
+import aiss.model.consorcio.ParadasDatos;
 
 public class ConsorcioResource {
 	//uri para obtener la lista de consorcios
@@ -104,5 +105,22 @@ public class ConsorcioResource {
 		return parada;
 	
 	}
+	
+	public ParadasDatos getParadasConsorcio(String idConsorcio) {
+	    ClientResource cr = null;
+	    ParadasDatos paradas = null;
+	  
+	    try {
+	      cr = new ClientResource(uri2 + idConsorcio + "/paradas/");
+	      paradas = cr.get(ParadasDatos.class);
+	      
+	      
+	    } catch (ResourceException re) {
+	      System.err.println("Error al obtener las paradas: " + cr.getResponse().getStatus());
+	      throw re;
+	    }
+	    
+	    return paradas;
+	  }
 	
 }

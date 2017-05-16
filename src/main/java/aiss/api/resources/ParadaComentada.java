@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aiss.model.consorcio.Parada;
+import aiss.model.consorcio.ParadaDatos;
 
-public class ParadaComentada extends Parada {
+public class ParadaComentada extends ParadaDatos {
 	
 	private List<String> comentarios = new ArrayList<String>();
 	
@@ -20,7 +21,7 @@ public class ParadaComentada extends Parada {
 		setIdZona(idZona);
 		setNombre(nombre);
 	}
-	public ParadaComentada(Parada parada){
+	public ParadaComentada(ParadaDatos parada){
 		super();
 		setIdParada(parada.getIdParada());
 		setIdNucleo(parada.getIdNucleo());

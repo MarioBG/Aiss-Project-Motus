@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,8 +13,9 @@ import javax.ws.rs.Produces;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
-import aiss.model.consorcio.Parada;
-import aiss.model.consorcio.Paradas;
+import aiss.model.consorcio.ParadaDatos;
+import aiss.model.consorcio.ParadasDatos;
+import aiss.model.resource.ConsorcioResource;
 
 
 @Path("/comentarios")
@@ -41,22 +41,16 @@ public class ComentariosResource {
 	}
 	
 	public static void rellenaListaParadas(){
-		ClientResource cr = null;
-		Paradas partialParadas = null;
+		ConsorcioResource cr = null;
 		Random r = new Random();
 		for(int idConsorcio=1; idConsorcio<=9; idConsorcio++){
 			List<ParadaComentada> consorcio = new ArrayList<ParadaComentada>();
-			try {
-				cr = new ClientResource(uri2 + idConsorcio + "/paradas/");
-				partialParadas = cr.get(Paradas.class);
-				for (Parada p : partialParadas.getParadas()){
-					consorcio.add(new ParadaComentada(p));
-				}
-				paradas.add(consorcio);
-			} catch (ResourceException re) {
-				System.err.println("Error al obtener las paradas: " + cr.getResponse().getStatus());
-				throw re;
+			cr = new ConsorcioResource();
+			ParadasDatos partialParadas=cr.getParadasConsorcio(Integer.toString(idConsorcio));
+			for (ParadaDatos p : partialParadas.getParadas()){
+				consorcio.add(new ParadaComentada(p));
 			}
+			ComentariosResource.paradas.add(consorcio);
 		}
 		for(List<ParadaComentada> p : paradas){
 			for(ParadaComentada q : p){
