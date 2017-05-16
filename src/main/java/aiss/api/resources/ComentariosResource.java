@@ -1,8 +1,11 @@
 package aiss.api.resources;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +23,7 @@ public class ComentariosResource {
 	
 	private static ComentariosResource _instance=null;
 	private static List<String> comentarios = new ArrayList<String>();
-	private static List<List<Parada>> paradas = new ArrayList<List<Parada>>();
+	private static List<List<ParadaComentada>> paradas = new ArrayList<List<ParadaComentada>>();
 	private static String uri2 = "http://api.ctan.es/v1/Consorcios/";
 	
 	
@@ -40,19 +43,27 @@ public class ComentariosResource {
 	public static void rellenaListaParadas(){
 		ClientResource cr = null;
 		Paradas partialParadas = null;
+		Random r = new Random();
 		for(int idConsorcio=1; idConsorcio<=9; idConsorcio++){
+			List<ParadaComentada> consorcio = new ArrayList<ParadaComentada>();
 			try {
 				cr = new ClientResource(uri2 + idConsorcio + "/paradas/");
 				partialParadas = cr.get(Paradas.class);
-				paradas.add(partialParadas.getParadas());
-				
+				for (Parada p : partialParadas.getParadas()){
+					consorcio.add(new ParadaComentada(p));
+				}
+				paradas.add(consorcio);
 			} catch (ResourceException re) {
 				System.err.println("Error al obtener las paradas: " + cr.getResponse().getStatus());
 				throw re;
 			}
-			paradas.add(new ArrayList<Parada>());
-			paradas.get(0).add(new Parada());
-			paradas.get(0).get(0).setIdNucleo("BCZ");
+		}
+		for(List<ParadaComentada> p : paradas){
+			for(ParadaComentada q : p){
+				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
+				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
+				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
+			}
 		}
 	}
 	
@@ -66,10 +77,8 @@ public class ComentariosResource {
 
 	@GET
 	@Produces("application/json")
-	public Collection<String> getAll()
+	public Collection<ParadaComentada> getAll()
 	{
-		ArrayList<String> ans = new ArrayList<String>();
-		ans.add("Hello :D");
-		return ans;
+		return paradas.get(0);
 	}
 }

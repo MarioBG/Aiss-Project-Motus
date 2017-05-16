@@ -39,5 +39,10 @@ public class ParadaComentada extends Parada {
 	public List<String> getComentarios(){
 		return comentarios;
 	}
+	
+	@Override
+	public String toString() {
+		return getNombre()+" [" + comentarios + "]";
+	}
 
 }
