@@ -4,6 +4,7 @@ C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\c
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\controller\ConsorcioListController.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\controller\DriveFileDelete.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\model\resource\GoogleDriveResource.java
+C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\api\resources\Comentario.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\controller\DriveFileUpdate.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\utility\OAuthRegistry.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\model\consorcio\Paradas.java
@@ -31,6 +32,7 @@ C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\m
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\controller\DriveFileListDisplay.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\model\consorcio\Municipio.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\model\google\drive\Capabilities.java
+C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\api\resources\Comentarios.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\controller\oauth\OAuth2Callback.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\utility\OAuthServiceConfiguration.java
 C:\Users\Mario\Desktop\Trabajo\Uni\2º Software\AISS\Project\src\main\java\aiss\model\google\drive\Picture.java

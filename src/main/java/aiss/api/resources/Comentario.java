@@ -1,10 +1,13 @@
 
 package aiss.api.resources;
 
+import java.util.Random;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.appengine.repackaged.org.joda.time.LocalDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -25,7 +28,18 @@ public class Comentario {
     @JsonProperty("fecha")
     private String fecha;
 
-    
+    public Comentario (String texto){
+    	Random r = new Random();
+    	StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 8; i++) {
+            char c = (char)(r.nextInt((int)(Character.MAX_VALUE)));
+            sb.append(c);
+        }
+        idComentario = sb.toString();
+        this.texto=texto;
+        this.usuario="STANDARD_CREATOR";
+        this.fecha=LocalDateTime.now().toString();
+    }
     
     @JsonProperty("idComentario")
     public String getIdComentario() {
@@ -38,12 +52,12 @@ public class Comentario {
     }
 
     @JsonProperty("texto")
-    public String getNombre() {
+    public String getTexto() {
         return texto;
     }
 
     @JsonProperty("texto")
-    public void setNombre(String nombre) {
+    public void setTexto(String nombre) {
         this.texto = nombre;
     }
 

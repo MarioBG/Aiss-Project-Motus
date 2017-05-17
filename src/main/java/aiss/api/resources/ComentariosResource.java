@@ -49,7 +49,7 @@ public class ComentariosResource {
 	
 	public static void rellenaListaParadas(){
 		ConsorcioResource cr = null;
-		//Random r = new Random();
+		Random r = new Random();
 		for(int idConsorcio=1; idConsorcio<=9; idConsorcio++){
 			List<ParadaComentada> consorcio = new ArrayList<ParadaComentada>();
 			cr = new ConsorcioResource();
@@ -59,13 +59,13 @@ public class ComentariosResource {
 			}
 			ComentariosResource.paradas.add(consorcio);
 		}
-		/*for(List<ParadaComentada> p : paradas){
+		for(List<ParadaComentada> p : paradas){
 			for(ParadaComentada q : p){
 				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
 				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
 				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
 			}
-		}*/
+		}
 	}
 	
 	public static ComentariosResource getInstance()
@@ -125,11 +125,12 @@ public class ComentariosResource {
 				System.out.println(p);
 			}
 		}
-		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(ans.getIdParada());
+		/*UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
+		URI uri = ub.build(comentario.getIdComentario());
 		ResponseBuilder resp = Response.created(uri);
-		resp.entity(ans);			
-		return resp.build();
+		resp.entity(comentario);			
+		return resp.build();*/
+		return Response.status(201).entity(ans).build();
 			
 	}
 	
