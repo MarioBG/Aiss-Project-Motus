@@ -7,7 +7,7 @@ import aiss.model.consorcio.ParadaDatos;
 
 public class ParadaComentada extends ParadaDatos {
 	
-	private List<String> comentarios = new ArrayList<String>();
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public ParadaComentada(){
 		super();
@@ -28,15 +28,15 @@ public class ParadaComentada extends ParadaDatos {
 		setNombre(parada.getNombre());
 	}
 	
-	public void addComentario(String com){
-		comentarios.add(com);
+	public void addComentario(Comentario comentario){
+		comentarios.add(comentario);
 	}
 	
 	public boolean removeComentario(String com){
 		return comentarios.remove(com);
 	}
 	
-	public List<String> getComentarios(){
+	public List<Comentario> getComentarios(){
 		return comentarios;
 	}
 	

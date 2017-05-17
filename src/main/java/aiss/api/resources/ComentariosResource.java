@@ -49,7 +49,7 @@ public class ComentariosResource {
 	
 	public static void rellenaListaParadas(){
 		ConsorcioResource cr = null;
-		Random r = new Random();
+		//Random r = new Random();
 		for(int idConsorcio=1; idConsorcio<=9; idConsorcio++){
 			List<ParadaComentada> consorcio = new ArrayList<ParadaComentada>();
 			cr = new ConsorcioResource();
@@ -59,13 +59,13 @@ public class ComentariosResource {
 			}
 			ComentariosResource.paradas.add(consorcio);
 		}
-		for(List<ParadaComentada> p : paradas){
+		/*for(List<ParadaComentada> p : paradas){
 			for(ParadaComentada q : p){
-				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
-				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
-				q.addComentario(comentarios.get(r.nextInt(comentarios.size())));
+				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
+				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
+				q.addComentario(new Comentario(comentarios.get(r.nextInt(comentarios.size()))));
 			}
-		}
+		}*/
 	}
 	
 	public static ComentariosResource getInstance()
@@ -76,6 +76,20 @@ public class ComentariosResource {
 	}
 	
 
+	@GET
+	@Path("/{paradaId}")
+	@Produces("application/json")
+	public ParadaComentada getParada(@PathParam("paradaId") String paradaId)
+	{
+		for(List<ParadaComentada> l : paradas){
+			for(ParadaComentada p : l){
+				if(p.getIdParada().equals(paradaId))
+					return p;
+			}
+		}
+		throw new NotFoundException("No se encontró ninguna parada con ID: "+paradaId);
+	}
+	
 	@GET
 	@Produces("application/json")
 	public Collection<ParadaComentada> getAll()
@@ -95,10 +109,10 @@ public class ComentariosResource {
 	}
 	
 	@POST
-	@Path("/{paradaId}/{comentario}")
-	@Consumes("text/plain")
+	@Path("/{paradaId}")
+	@Consumes("application/json")
 	@Produces("application/json")
-	public Response addComentario(@Context UriInfo uriInfo,@PathParam("paradaId") String paradaId, @PathParam("comentario") String comentario){
+	public Response addComentario(@Context UriInfo uriInfo,@PathParam("paradaId") String paradaId, Comentario comentario){
 		int i = indexParada(paradas,paradaId);
 		if(i==-1){
 			throw new NotFoundException("No se encontró la parada con esta ID=" + paradaId);
@@ -108,6 +122,7 @@ public class ComentariosResource {
 			if (p.getIdParada().equals(paradaId)){
 				p.addComentario(comentario);
 				ans=p;
+				System.out.println(p);
 			}
 		}
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
