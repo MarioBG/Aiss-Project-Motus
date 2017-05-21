@@ -25,7 +25,17 @@ public class ParadaComentada extends ParadaDatos {
 		setIdParada(parada.getIdParada());
 		setIdNucleo(parada.getIdNucleo());
 		setIdZona(parada.getIdZona());
+		setIdMunicipio(parada.getIdMunicipio());
 		setNombre(parada.getNombre());
+		setCorrespondecias(parada.getCorrespondecias());
+		setDescripcion(parada.getDescripcion());
+		setInactiva(parada.getInactiva());
+		setLatitud(parada.getLatitud());
+		setLongitud(parada.getLongitud());
+		setMunicipio(parada.getMunicipio());
+		setNucleo(parada.getNucleo());
+		setObservaciones(parada.getObservaciones());
+		setPrincipal(parada.getPrincipal());
 	}
 	
 	public void addComentario(Comentario comentario){

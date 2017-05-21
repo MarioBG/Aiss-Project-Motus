@@ -1,9 +1,12 @@
 
 package aiss.api.resources;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -27,15 +30,15 @@ public class Comentario {
     private String usuario;
     @JsonProperty("fecha")
     private String fecha;
+    private List<Integer> idsUsadas=new ArrayList<Integer>();
 
     public Comentario (String texto){
     	Random r = new Random();
-    	StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 8; i++) {
-            char c = (char)(r.nextInt((int)(Character.MAX_VALUE)));
-            sb.append(c);
-        }
-        idComentario = sb.toString();
+    	Integer sb = null;
+    	while (sb==null || idsUsadas.contains(sb)){
+    		sb = r.nextInt(99999999);
+    	}
+        idComentario = String.valueOf(sb);
         this.texto=texto;
         this.usuario="STANDARD_CREATOR";
         this.fecha=LocalDateTime.now().toString();

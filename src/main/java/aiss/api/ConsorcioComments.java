@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import aiss.api.resources.ComentariosResource;
+import aiss.api.resources.ParadaResource;
 
 
 public class ConsorcioComments extends Application {
@@ -17,6 +18,7 @@ public class ConsorcioComments extends Application {
 	public ConsorcioComments() {
 
 		singletons.add(ComentariosResource.getInstance());
+		singletons.add(ParadaResource.getInstance());
 	}
 
 	@Override
