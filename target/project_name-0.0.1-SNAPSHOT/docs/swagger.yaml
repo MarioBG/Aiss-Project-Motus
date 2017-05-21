@@ -1,0 +1,147 @@
+swagger: '2.0'
+info:
+  description: Esta API está integrada en el servicio Motus, y es accesible para cualquier desarrollador.
+  version: 1.0.0
+  title: API de Paradas
+  # put the contact info for your development or API team
+  contact:
+    email: mario.biz.gon@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# all paths will be relative to the basePath specified
+basePath: /apiv1
+
+# tags are used for organizing operations
+tags:
+- name: comentarios
+  description: Operaciones con comentarios
+- name: paradas
+  description: Operaciones con paradas (REST, CRUD)
+schemes:
+- http
+paths:
+  /paradas:
+    get:
+      tags:
+      - paradas
+      summary: Devuelve todas las paradas del repositorio interno
+      operationId: getParadas
+      description: |
+        Devuelve todas las paradas del repositorio interno de paradas.
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve todas las paradas
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Parada'
+    post:
+      tags:
+      - paradas
+      summary: Añade una parada al repositorio interno
+      operationId: addParada
+      description: Añade una parada al sistema
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: parada
+        description: Parada a añadir
+        schema:
+          $ref: '#/definitions/Parada'
+      responses:
+        201:
+          description: Parada creada
+        400:
+          description: Entrada inválida, formato de objeto incorrecto
+    put:
+      tags:
+      - paradas
+      summary: Actualiza una parada del repositorio
+      operationId: updateParada
+      description: Actualiza una parada del sistema
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: parada
+        description: Parada a actualizar
+        schema:
+          $ref: '#/definitions/Parada'
+      responses:
+        204:
+          description: Parada actualizada (No Content)
+        404:
+          description: No se encuentra la parada en el repositorio interno
+  /paradas/{idParada}:
+    get:
+      parameters:
+        - name: idParada
+          in: path
+          type: string
+          required: true
+          description: ID de la parada a buscar
+        
+      tags:
+      - paradas
+      summary: Devuelve la parada con la idParada especificada
+      operationId: getParada
+      description: |
+        Devuelve todas las paradas del repositorio interno de paradas.
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve la parada con la idParada especificada en formato JSON
+          schema:
+            $ref: '#/definitions/Parada'
+        404:
+          description: No se encuentra la parada en el repositorio interno
+    delete:
+      tags:
+      - paradas
+      summary: Borra la parada con ID {idParada} del repositorio
+      operationId: deleteParada
+      description: Borra la parada con la idParada especificada del sistema
+      parameters:
+      - in: path
+        type: string
+        name: idParada
+        description: Parada a borrar
+        required: true
+        
+      responses:
+        204:
+          description: Parada borrada (No Content)
+        404:
+          description: No se encuentra la parada en el repositorio interno
+definitions:
+  Parada:
+    type: object
+    required:
+    - idParada
+    - idNucleo
+    - idZona
+    - nombre
+    properties:
+      idParada:
+        type: string
+        example: "p3"
+      idNucleo:
+        type: string
+        format: int32
+        example: 1
+      idZona:
+        type: string
+        format: int32
+        example: 3
+      nombre:
+        type: string
+        example: "LAS CABEZAS DE SAN JUAN"
